@@ -1,5 +1,5 @@
 {
-  "label" : "Create Area of Interest",
+  "label" : "Create AOI Track",
   "submission_type":"individual",
   "component" : "tosca",
   "allowed_accounts": [ "ops" ],  

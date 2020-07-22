@@ -3,7 +3,7 @@
 FROM hysds/isce2:latest-es1
 
 MAINTAINER jlinick "Justin.P.Linick@jpl.nasa.gov"
-LABEL description="PGE for AOI creation"
+LABEL description="PGE for AOI Track creation"
 
 USER ops
 COPY . /home/ops/verdi/ops/create_aoi
