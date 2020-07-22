@@ -93,11 +93,11 @@ def parse_additional_metadata(additional_met, met):
     return met
 
 def generate_label(label, aoi_type):
-    '''validates the aoi name, appending an AOI_ if necessary'''
+    '''validates the aoi name, appending an Test_AOI_Track_ if necessary'''
     label = re.sub(r"[^a-zA-Z0-9_]+", '', label.replace(' ', '_'))
-    if label.startswith('AOI_'):
-        label = label.lstrip('AOI_')
-    return 'AOI_{0}_{1}'.format(aoi_type, label)
+    if label.startswith('Test_AOI_Track_'):
+        label = label.lstrip('Test_AOI_Track_')
+    return 'Test_AOI_Track_{0}_{1}'.format(aoi_type, label)
 
 def validate_type(aoi_type):
     '''simply strips non-chars/ints & replaces spaces with underscore'''
