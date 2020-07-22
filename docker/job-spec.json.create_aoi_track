@@ -26,6 +26,14 @@
       "destination": "context"
     },
     {
+      "name": "track_number",
+      "destination": "context"
+    },
+    {
+      "name": "orbit_direction",
+      "destination": "context"
+    },
+    {
       "name": "starttime",
       "destination": "context"
     },
