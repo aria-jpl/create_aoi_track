@@ -28,6 +28,18 @@
       "placeholder": "AOI bounds as a geojson"
     },
     {
+      "name": "track_number",
+      "from": "submitter",
+      "type": "text",
+      "placeholder": "Track number"
+    },
+    {
+      "name": "orbit_direction",
+      "from": "submitter",
+      "type": "text",
+      "placeholder": "Orbit direction"
+    },
+    {
       "name": "starttime",
       "from": "submitter",
       "type": "text",
