@@ -24,14 +24,15 @@ def main():
     # load your basic configs for met & dataset
     ds = load_json(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'config/AOI.dataset.json'))
     met = load_json(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'config/AOI.met.json'))
+    versions = load_json(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'config/dataset.versions.json'))
     # build input ds & met from context variables
-    ds = build_aoi_ds(context, ds)
+    ds = build_aoi_ds(context, ds, versions)
     met = build_aoi_met(context, met)
     # save as a HySDS product
     save_files(ds, met)
     return ds, met
 
-def build_aoi_ds(context, ds):
+def build_aoi_ds(context, ds, versions):
     '''generates the aoi dataset json from the context inputs'''
     aoi_type = validate_type(context['type'])
     label = generate_label(context['name'], aoi_type)
@@ -51,6 +52,7 @@ def build_aoi_ds(context, ds):
     ds['starttime'] = starttime
     ds['endtime'] = endtime
     ds['emails'] = email_list
+    ds['version'] = get_dataset_version(context['name'], versions)
     return ds
 
 def build_aoi_met(context, met):
@@ -147,6 +149,13 @@ def validate_geojson(input_geojson):
             return location
     except:
         raise Exception('unable to parse geojson: {0}'.format(input_geojson))
+
+def get_dataset_version(name, versions):
+    '''determine dataset type to assign proper dataset version'''
+    if name.startswith("AOITRACK"):
+        return versions['aoitrack-earthquake']
+    else:
+        return versions['area_of_interest']
 
 def parse_emails(emails):
     '''parse the input emails and return them as a list (input can be string or list'''
