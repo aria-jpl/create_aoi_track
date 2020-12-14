@@ -52,7 +52,7 @@ def build_aoi_ds(context, ds, versions):
     ds['starttime'] = starttime
     ds['endtime'] = endtime
     ds['emails'] = email_list
-    ds['version'] = versions[aoi_type]
+    ds['version'] = get_dataset_version(context['name'], versions)
     return ds
 
 def build_aoi_met(context, met):
@@ -149,6 +149,13 @@ def validate_geojson(input_geojson):
             return location
     except:
         raise Exception('unable to parse geojson: {0}'.format(input_geojson))
+
+def get_dataset_version(name, versions):
+    '''determine dataset type to assign proper dataset version'''
+    if name.startswith("AOITRACK"):
+        return versions['aoitrack-earthquake']
+    else:
+        return versions['area_of_interest']
 
 def parse_emails(emails):
     '''parse the input emails and return them as a list (input can be string or list'''
